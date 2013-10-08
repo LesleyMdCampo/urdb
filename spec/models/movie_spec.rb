@@ -25,4 +25,15 @@ describe Movie do
       end
     end
   end
+
+  describe "#rating" do
+    context "when Movie is found on Rotten Tomatoes" do
+      it "returns the audience score for the Movie" do
+        movie.
+      end
+    end
+
+    context "when Movie is not found on Rotten Tomatoes" do
+    end
+  end
 end

@@ -6,4 +6,9 @@ class Movie < ActiveRecord::Base
   def snippet
     description.truncate 50
   end
+
+  def rating
+    mov = RottenMovie.find(title: title, limit: 1)
+    mov.ratings.audience_score
+  end
 end
