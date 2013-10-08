@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007165006) do
+ActiveRecord::Schema.define(version: 20131007213427) do
 
   create_table "locations", force: true do |t|
     t.integer  "movie_id"
@@ -32,11 +32,30 @@ ActiveRecord::Schema.define(version: 20131007165006) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "character"
+    t.integer  "star_id"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["movie_id"], name: "index_roles_on_movie_id"
+  add_index "roles", ["star_id"], name: "index_roles_on_star_id"
+
   create_table "showtimes", force: true do |t|
     t.datetime "time",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
+  end
+
+  create_table "stars", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "headshot_url"
+    t.string   "bio"
   end
 
 end

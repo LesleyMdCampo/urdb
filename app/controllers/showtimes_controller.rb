@@ -14,7 +14,7 @@ class ShowtimesController < ApplicationController
   private
 
   def showtime_params
-    params.require(:showtime).permit(:time).tap {|x| Chronic.parse(x)}
+    params.require(:showtime).permit(:time)
   end
 end
 
