@@ -14,7 +14,7 @@ describe Movie do
     context "when description is less than or equal to 50 characters" do
       it "returns the full description" do
         allow(movie).to receive(:description).and_return("When a Roman general is betrayed and his family is")
-        expect(movie.snippet).to eq("When a Roman general is betrayed and his family is")
+        expect(movie.snippet).to eq(movie.description)
       end
     end
 
