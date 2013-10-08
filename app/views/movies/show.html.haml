@@ -16,21 +16,37 @@
 
     %table
       %thead
-        %th Location
+        %th St.
+        %th City
+        %th Theater
         %th Time
+        %th Add showtime
       %tbody
-        - @showtimes.each do |showtime|
+        - @locations.order(:state, :city, :name).each do |location|
           %tr
-            %td= showtime.location
-            %td= showtime.time
+            %td= location.state
+            %td= location.city
+            %td= location.name
+            %td
+              - location.showtimes.each do |showtime|
+                - if showtime.time < Time.now
+                  %span.crossed
+                    = showtime.time.to_s(:only_time)
+                  |
+                - else
+                  %span
+                    = showtime.time.to_s(:only_time)
+                  |
+            %td
+              = simple_form_for [@movie, location, @showtime] do |f|
+                .showtime
+                  = f.text_field :time
+                  = f.submit '+', :class => "tiny success button"
 
-    = form_for [@movie, @showtime] do |f|
-      .location
-        = f.label :location
-        = f.text_field :location
-      .time
-        = f.label :time
-        = f.text_field :time
-      .submit
-        = f.submit 'Create Showtime', :class => "button"
-    
+    .location
+      = simple_form_for [@movie, @location] do |f|
+        .state= f.input :state
+        .city= f.input :city
+        .name= f.input :name
+        .address= f.input :address
+        .submit= f.submit 'Add Location', :class => "small button"

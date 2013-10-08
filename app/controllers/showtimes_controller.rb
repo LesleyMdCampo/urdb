@@ -1,20 +1,20 @@
 class ShowtimesController < ApplicationController
 
   def create
-    @movie = Movie.find(params[:movie_id])
-    @showtime = @movie.showtimes.new(showtime_params)
+    @location = Location.find(params[:location_id])
+    @showtime = @location.showtimes.new(showtime_params)
 
     if @showtime.save
-      redirect_to @showtime.movie, notice: 'Showtime was successfully created.'
+      redirect_to @location.movie, notice: 'Showtime was successfully created.'
     else
-      redirect_to @showtime.movie, alert: 'Showtime was not successfully created'
+      redirect_to @location.movie, alert: 'Showtime could not be created'
     end
   end
 
   private
 
   def showtime_params
-    params.require(:showtime).permit(:location, :time)
+    params.require(:showtime).permit(:time).tap {|x| Chronic.parse(x)}
   end
 end
 

@@ -35,26 +35,63 @@ table.movies {
     font-size: 1.3em;
   }
 
-  form {
-    margin-top: 30px;
+  .icon-plus-sign {
+    color: $secondary-color;
+    color: black;
 
-    input.button {
-      margin-top: 8px;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .showtime {
+    input[type="text"] {
+      width: 75%;
+      display: inline;
     }
   }
 
   .location {
-    @include grid-column(6);
+    @include grid-row;
+    margin-top: 30px;
     padding-left: 0;
+
+    span {
+      border: 1px solid gray;
+    }
+
+    .state {
+      @include grid-column(2);
+      padding-left: 0;
+    }
+
+    .city {
+      @include grid-column(3);
+    }
+
+    .name {
+      @include grid-column(4);
+    }
+
+    .address {
+      @include grid-column(3);
+      padding-right: 0;
+    }
+
+    .submit {
+      @include grid-column(3);
+      padding-left: 0;
+    }
   }
 
-  .time {
-    @include grid-column(3);
-    padding-left: 0;
+
+
+  .crossed {
+    color: gray;
+    text-decoration: line-through;
   }
 
-  .submit {
-    @include grid-column(3);
-    padding-left: 0;
+  .showtime {
+
   }
 }

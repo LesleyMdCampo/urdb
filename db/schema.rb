@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007035319) do
+ActiveRecord::Schema.define(version: 20131007165006) do
+
+  create_table "locations", force: true do |t|
+    t.integer  "movie_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "title"
@@ -23,11 +33,10 @@ ActiveRecord::Schema.define(version: 20131007035319) do
   end
 
   create_table "showtimes", force: true do |t|
-    t.string   "location"
-    t.string   "time"
+    t.datetime "time",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "movie_id"
+    t.integer  "location_id"
   end
 
 end
