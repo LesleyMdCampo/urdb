@@ -37,6 +37,8 @@ gem 'rspec-rails'
 gem 'zurb-foundation'
 gem 'haml-rails'
 gem 'simple_form'
+gem 'figaro'
+gem 'rottentomatoes'
 
 
 # Use ActiveModel has_secure_password
