@@ -23,10 +23,20 @@ table.movies {
   }
 }
 
-#cast {
+#cast, #movies {
   img {
     max-width: 50px;
     max-height: 50px;
+  }
+
+  a {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+  }
+
+  span.character {
+    font-weight: bold;
   }
 
   li:nth-child(odd) {

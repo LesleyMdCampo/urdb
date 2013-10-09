@@ -1,5 +1,4 @@
-#headshot
-  %img{src: @star.headshot_url}
+#headshot= image_tag(@star.headshot_url)
 
 #star
   #info
@@ -11,10 +10,8 @@
       - if @star.movies
         %h2.centered Movies
         %ul
-          - @star.movies.each do |m|
+          - @star.movies.each do |movie|
             %li
-              =link_to m do
-                =image_tag(m.poster_url)
-                ="#{m.title}"
-        %br
-        %br
+              = link_to movie do
+                = image_tag(movie.poster_url)
+                = "#{movie.title}"

@@ -1,5 +1,4 @@
-#poster
-  %img{src: @movie.poster_url.to_s}
+#poster= image_tag(@movie.poster_url)
 
 #movie
   #info
@@ -7,20 +6,19 @@
       %h1= @movie.title
     #description
       %p= @movie.description
+    #trailer
+      %i.icon-youtube-play
+      =link_to "Watch the trailer on YouTube", @movie.trailer_url, {target: "blank"}
     #cast
       - if @movie.roles
         %h2.centered Cast
         %ul
-          - @movie.roles.each do |r|
-            %li 
-              =image_tag(r.star.headshot_url)
-              ="#{r.character} - #{r.star.name}"
-        %br
-        %br
-    #trailer
-      %i.icon-youtube-play
-      =link_to "Watch the trailer on YouTube", @movie.trailer_url, {target: "blank"}
-
+          - @movie.roles.each do |role|
+            %li
+              = link_to role.star do
+                = image_tag(role.star.headshot_url)
+                %span.character= "#{role.character} -"
+                = role.star.name
     #showtimes
       %h2.centered Showtimes
 
@@ -43,4 +41,3 @@
           = f.text_field :time
         .submit
           = f.submit 'Create Showtime', :class => "button"
-    

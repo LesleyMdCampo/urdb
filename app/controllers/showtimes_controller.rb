@@ -1,5 +1,4 @@
 class ShowtimesController < ApplicationController
-
   def create
     @movie = Movie.find(params[:movie_id])
     @showtime = @movie.showtimes.new(showtime_params)
@@ -17,4 +16,3 @@ class ShowtimesController < ApplicationController
     params.require(:showtime).permit(:location, :time)
   end
 end
-
