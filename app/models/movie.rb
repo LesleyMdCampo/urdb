@@ -4,7 +4,7 @@ class Movie < ActiveRecord::Base
   has_many :stars, through: :roles
 
   def snippet
-    description.truncate 50
+    description.to_s.truncate 50
   end
 
   def rating
