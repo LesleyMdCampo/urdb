@@ -7,8 +7,7 @@ describe Movie do
   describe "#snippet" do
     context "when description is nil" do
       it "returns an empty string" do
-        # allow(movie).to receive(:description).and_return(nil)
-        movie.description = nil
+        allow(movie).to receive(:description).and_return(nil)
         expect(movie.snippet).to eq("")
       end
     end
@@ -31,16 +30,14 @@ describe Movie do
   describe "#audience_rating" do
     context "when Movie is found on Rotten Tomatoes" do
       it "returns the audience score for the Movie" do
-        movie.title = "Jurassic Park"
-        allow(movie).to receive(:rotten_finder).and_return(OpenStruct.new(ratings: OpenStruct.new(audience_score: 84)))
+        allow(movie).to receive(:rotten_finder).and_return(rotten_finder_return)
 
-        expect(movie.audience_rating).to eq(84) 
+        expect(movie.audience_rating).to eq(84)
       end
     end
 
     context "when Movie is not found on Rotten Tomatoes" do
       it "returns nil" do
-        movie.title = "blahblahblahblahblahxyz"
         allow(movie).to receive(:rotten_finder).and_return([])
 
         expect(movie.audience_rating).to be_nil

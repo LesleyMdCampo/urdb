@@ -9,14 +9,14 @@ class Movie < ActiveRecord::Base
     RottenMovie.find(title: title, limit: 1)
   end
 
-  def audience_rating 
+  def audience_rating
     rotten_finder.ratings.audience_score unless rotten_finder.empty?
   end
 
   def self.average_rating
     movie_scores = []
 
-    Movie.all.each do |movie|
+    self.all.each do |movie|
       movie_scores << movie.audience_rating if movie.audience_rating
     end
 
@@ -25,13 +25,13 @@ class Movie < ActiveRecord::Base
     else
       nil
     end
-    
+
   end
 
   def snippet
     description.to_s.truncate 50
   end
 
-  
+
 
 end
