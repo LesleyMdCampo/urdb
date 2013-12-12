@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Movie do
   let(:movie) { Movie.new }
+  let(:movie2) { Movie.new([])}
   let(:rotten_finder_return) { OpenStruct.new(ratings: OpenStruct.new(audience_score: 84)) }
 
   describe "#snippet" do
@@ -39,10 +40,10 @@ describe Movie do
  		end
 
  		context "when Movie is not found on Rotten Tomatoes" do
- 			it "returns an empty array" do
+ 			it "returns nil" do
  				allow(movie).to receive(:rotten_finder).and_return([])
 
- 				expect(movie.audience_rating).to eq([])
+ 				expect(movie.audience_rating).to eq(nil)
  			end
  		end
  	end
