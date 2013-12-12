@@ -21,6 +21,10 @@ class Movie < ActiveRecord::Base
   def snippet
     description.truncate 50
   end
+
+  def self.average_rating
+
+  end
 end
 
 

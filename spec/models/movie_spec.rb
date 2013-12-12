@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Movie do
   let(:movie) { Movie.new }
-  let(:movie2) { Movie.new([])}
+  let(:movie2) { Movie.new}
   let(:rotten_finder_return) { OpenStruct.new(ratings: OpenStruct.new(audience_score: 84)) }
 
   describe "#snippet" do
@@ -47,4 +47,28 @@ describe Movie do
  			end
  		end
  	end
+  
+  describe '.average_rating' do
+    context "when all movies can be found on Rotten Tomatoes" do
+      it "returns the average audience_score for all movies" do 
+      	allow(movie).to receive(:audience_rating).and_return(100)
+      	allow(movie2).to receive(:audience_rating).and_return(50)
+      	allow(Movie).to receive(:all).and_return([movie, movie2])
+
+      	expect(Movie.average_rating).to eq(75)
+      	end
+    end
+
+    context "when some movies are not found on Rotten Tomatoes" do
+      it "returns the average audience_score of the movies that were found"
+    end
+
+    context "when no movies are found on Rotten Tomatoes" do
+      it "returns nil"
+    end
+  end
+
+
+
+
 end
